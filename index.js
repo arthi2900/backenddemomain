@@ -215,6 +215,4 @@ app.delete("/student/:id", authenticate, async function (req, res) {
     console.log(error);
   }
 });
-        app.listen(process.env.PORT || 3001,function(){
-        console.log(`successful start from connect ${process.env.PORT}`);
-    })
+app.listen(process.env.PORT || 3001);
