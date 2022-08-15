@@ -46,4 +46,10 @@ res.status(401).send({message:"Invalid credenitials"});
 }
    }
  })
+ router.post ('/logout',auth,async(req,res)=>{
+   
+        res.clearCookie("jwt");
+        res.redirect("/");
+   
+ })
  export const AuthRouter=router;
