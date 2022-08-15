@@ -4,15 +4,15 @@ import {client} from "./index.js";
 import { ObjectId } from "mongodb";
 import jwt  from "jsonwebtoken";
 import {auth} from "./auth.js";
-router.get("/",auth,async function(req,res){
+/*router.get("/",auth,async function(req,res){
     const result =await client.db("Todo").collection("user")
     .find({}).toArray();
     res.send(result);
-})
-router.get("/:id",auth,async function(req,res){
-    const {id}=req.params;
+})*/
+router.get("/",auth,async function(req,res){
+   // const {id}=req.params;
     const result =await client.db("Todo").collection("user")
-    .findOne({_id:ObjectId(id)});
+    .find({userid:ObjectId(req.userid)}).toArray();
     res.send(result);
 })
 
