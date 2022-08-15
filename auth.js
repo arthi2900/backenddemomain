@@ -4,7 +4,7 @@ export const auth=(req,res,next)=>{
     try {
      let verify = jwt.verify(req.headers.authorization,SECRET_KEY);
      if (verify) {
-       req.userid = verify._id;
+       req.id = verify._id;
        next();
      } else {
        res.status(401).json({ message: "Unauthorized" });
