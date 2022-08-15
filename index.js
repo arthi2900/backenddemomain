@@ -5,7 +5,7 @@ const cors = require("cors");
 const mongodb = require("mongodb");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const PORT=process.env.PORT;
 const mongoClient = mongodb.MongoClient;
 const URL =
   "mongodb+srv://shan1:shan1@cluster0.9trsz.mongodb.net/?retryWrites=true&w=majority";
@@ -166,6 +166,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log("Web server Started");
+app.listen(PORT || 3001, () => {
+  console.log(`Web server Started ${PORT}`);
 });
