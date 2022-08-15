@@ -5,15 +5,11 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {auth} from './auth.js';
 import { ObjectId } from "mongodb";
+
 router.post("/register", async function (req, res) {
     try {
-      // Open the Connection
-
-  
-      // Select the DB
-      const db = await client.db("b35wd_tamil");
-  
-      // Select the Collection
+           const db = await client.db("b35wd_tamil");
+        // Select the Collection
       const salt = await bcryptjs.genSalt(10);
       const hash = await bcryptjs.hash(req.body.password, salt);
       req.body.password = hash;
