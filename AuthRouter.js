@@ -38,7 +38,7 @@ if(isPasswordMatch){
 const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
 const user=username;
 res.send({message:"successful login",token:token,user:user});
-res.send(userstoretoken);
+//res.send(userstoretoken);
 }
 else{
 res.status(401).send({message:"Invalid credenitials"});
@@ -46,4 +46,6 @@ res.status(401).send({message:"Invalid credenitials"});
    }
  })
  
+
+
 export const AuthRouter=router;
