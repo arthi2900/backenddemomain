@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {auth} from './auth.js';
 import { ObjectId } from "mongodb";
-app.post("/register", async function (req, res) {
+router.post("/register", async function (req, res) {
     try {
       // Open the Connection
 
@@ -32,7 +32,7 @@ app.post("/register", async function (req, res) {
     }
   });
   
-  app.post("/login", async function (req, res) {
+  router.post("/login", async function (req, res) {
     try {
       // Open the Connection
   
