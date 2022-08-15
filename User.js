@@ -13,7 +13,7 @@ router.get("/",auth,async function(req,res){
    //const =req.params;
       const result =await client.db("Todo").collection("user")
         .findOne({});
-        res.status(200).json({ data });
+        res.status(200).json({ result });
     res.send(result);
 })
 
