@@ -1,50 +1,72 @@
 import express, { Router } from "express";
 const router=express.Router();
 import {client} from "./index.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {auth} from './auth.js';
 import { ObjectId } from "mongodb";
+app.post("/register", async function (req, res) {
+    try {
+      // Open the Connection
 
-async function genPassword(password){
-    const salt=await bcrypt.genSalt(10);
-    const hashpassword=await bcrypt.hash(password,salt);
-  //  console.log({salt,hashpassword});
-    return hashpassword;
+  
+      // Select the DB
+      const db = await client.db("b35wd_tamil");
+  
+      // Select the Collection
+      const salt = await bcryptjs.genSalt(10);
+      const hash = await bcryptjs.hash(req.body.password, salt);
+      req.body.password = hash;
+      await db.collection("users").insertOne(req.body);
+  
+      // Close the connection
+      await connection.close();
+  
+      res.json({
+        message: "Successfully Registered",
+      });
+    } catch (error) {
+      res.json({
+        message: "Error",
+      });
     }
-router.post("/register",async function (req,res){
-    const {username,password,email}=req.body;
-    const hashpassword=await genPassword(password);
-    const newUser={
-        username:username,email:email,password:hashpassword,
+  });
+  
+  app.post("/login", async function (req, res) {
+    try {
+      // Open the Connection
+  
+      // Select the DB
+      const db = await client.db("b35wd_tamil");
+  
+      // Select the Collection
+      const user = await db
+        .collection("users")
+        .findOne({ username: req.body.username });
+  
+      if (user) {
+        const match = await bcryptjs.compare(req.body.password, user.password);
+        if (match) {
+          // Token
+          const token = jwt.sign({ _id: user._id }, SECRET, { expiresIn: "1m" });
+          res.json({
+            message: "Successfully Logged In",
+            token,
+          });
+        } else {
+          res.status(401).json({
+            message: "Password is incorrect",
+          });
+        }
+      } else {
+        res.status(401).json({
+          message: "User not found",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
-const result=await client.db("Todo").collection("user")
-.insertOne(newUser);
-res.send(result);
-   })
-router.post("/login",async function(req,res){
-    const{username,password}=req.body;
-      const userfromdb=await client.db("Todo").collection("user").findOne({username:username});
-        console.log(userfromdb);
-    if(!userfromdb) 
-    {
-        res.status(401).send({message:"invalid credentials"});
-       }
-   else {
-    const storedPassword=userfromdb.password;
-    const isPasswordMatch=await bcrypt.compare(password,storedPassword);
-    console.log("isPasswordMatch",isPasswordMatch);
-if(isPasswordMatch){
-const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
-const user=username;
-res.send({message:"successful login",token:token,user:user});
-//res.send(userstoretoken);
-}
-else{
-res.status(401).send({message:"Invalid credenitials"});
-}
-   }
- })
+  });
  
 
 
