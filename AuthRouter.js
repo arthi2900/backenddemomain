@@ -46,11 +46,13 @@ res.status(401).send({message:"Invalid credenitials"});
 }
    }
  })
- router.get("/logout",auth,async function  (req, res) {
+ router.post("/logout",auth,async function  (req, res) {
     try{
-        res.localStorage.clear();
+        res.clearCookie('jwt');
         console.log("successfull logout");
-          }
+      
+  
+    }
  catch(error){
  res.status(500).send('error');
  }
