@@ -48,11 +48,9 @@ res.status(401).send({message:"Invalid credenitials"});
  })
  router.post("/logout",auth,async function  (req, res) {
     try{
-        res.clearCookie('jwt');
+        res.localStorage.removeItem('token')
         console.log("successfull logout");
-      
-  
-    }
+          }
  catch(error){
  res.status(500).send('error');
  }
