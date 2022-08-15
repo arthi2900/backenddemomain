@@ -13,8 +13,8 @@ router.get("/",auth,async function(req,res){
    //const =req.params;
       const result =await client.db("Todo").collection("user")
         .findOne({});
-       const re=res.status(200).json({username:result.username});
-    res.send(re);
+      res.status(200).json({username:result.username});
+    //res.send(re);
 })
 
 
