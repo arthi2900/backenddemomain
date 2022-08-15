@@ -10,7 +10,7 @@ router.get("/:id",auth,async function(req,res){
     res.send(result);
 })
 
-router.get("/home",auth,async function(req,res){
+router.get("/",auth,async function(req,res){
    //const =req.params;
       const result =await client.db("Todo").collection("user")
         .findOne({});
