@@ -12,8 +12,7 @@ import {auth} from "./auth.js";
 router.get("/:id",auth,async function(req,res){
    const {id}=req.params;
     const result =await client.db("Todo").collection("user")
-    
-    .find({_id:ObjectId(id)})
+        .find({_id:ObjectId(id)})
       .toArray();
     res.send(result);
 })
