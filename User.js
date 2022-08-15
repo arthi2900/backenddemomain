@@ -9,10 +9,10 @@ import {auth} from "./auth.js";
     res.send(result);
 })
 */
-router.get("/:id",auth,async function(req,res){
-   const {id}=req.params;
+router.get("/",auth,async function(req,res){
+   //const {id}=req.params;
        const result =await client.db("Todo").collection("user")
-        .findOne({_id:ObjectId(id)});
+        .findOne({username:username});
     res.send(result);
 })
 
