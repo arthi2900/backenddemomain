@@ -50,7 +50,7 @@ res.status(401).send({message:"Invalid credenitials"});
     try{
         res.clearCookie('jwt');
         console.log("successfull logout");
-        res.render("Login")
+      
   
     }
  catch(error){
