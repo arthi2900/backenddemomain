@@ -46,7 +46,7 @@ res.status(401).send({message:"Invalid credenitials"});
 }
    }
  })
- app.get('/logout',function(req,res){    
+ router.get('/logout',function(req,res){    
     req.local.destroy(function(err){  
         if(err){  
             console.log(err);  
