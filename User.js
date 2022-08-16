@@ -14,7 +14,7 @@ router.get("/:id",auth,async function(req,res){
 router.get("/home",auth,async function(req,res){
   const result =await client.db("Todo").collection("user")
   .findOne({});
-  res.json(result);
+  res.send(result);
 })
 
 
