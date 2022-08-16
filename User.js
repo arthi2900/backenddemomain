@@ -11,13 +11,10 @@ router.get("/:id",auth,async function(req,res){
     res.send(result);
 })*/
 
-router.get("/home",auth,async function(req,res){
-   //const =req.params;
-      const result =await client.db("Todo").collection("user")
-        .findOne({});
-        res.json(result)
-      //res.status(200).json({username:result.username,id:result._id});
-    //res.send(re);
+router.get("/home",async function(req,res){
+  const result =await client.db("Todo").collection("user")
+  .findOne({});
+  res.send(result);
 })
 
 
