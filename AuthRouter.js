@@ -22,13 +22,13 @@ const result=await client.db("Todo").collection("user")
 .insertOne(newUser);
 res.send(result);
    })
-router.get("/login",async function(req,res){
+router.post("/login",async function(req,res){
     const{username,password}=req.body;
       const userfromdb=await client.db("Todo").collection("user").findOne({username:username});
         console.log(userfromdb);
     if(!userfromdb) 
     {
-   res.status(401).send({message:"invalid credentials"});
+        res.status(401).send({message:"invalid credentials"});
        }
    else {
     const storedPassword=userfromdb.password;
@@ -39,7 +39,7 @@ const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
 const user=username;
 const id=userfromdb._id;
 const newUser1={
-  username:username,password:isPasswordMatch,token:token,id:id
+  username:username,password:hashpassword,token:token,id:id
 }
 console.log(userfromdb);
 console.log(user);
