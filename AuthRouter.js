@@ -22,7 +22,7 @@ const result=await client.db("Todo").collection("user")
 .insertOne(newUser);
 res.send(result);
    })
-router.post("/login",async function(req,res){
+router.get("/login",async function(req,res){
     const{username,password}=req.body;
       const userfromdb=await client.db("Todo").collection("user").findOne({username:username});
         console.log(userfromdb);
