@@ -38,9 +38,6 @@ if(isPasswordMatch){
 const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
 const user=username;
 const id=userfromdb._id;
-const newUser1={
-  username:username,password:isPasswordMatch,token:token,id:id
-}
 console.log(userfromdb);
 console.log(user);
 res.send({message:"successful login",token:token,user:user,id:id});
