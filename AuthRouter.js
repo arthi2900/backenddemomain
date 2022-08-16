@@ -38,6 +38,11 @@ if(isPasswordMatch){
 const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
 const user=username;
 const id=userfromdb._id;
+const newUser1={
+  username:username,email:email,password:hashpassword,token:token,id:_id
+}
+const userfromdb1=await client.db("Todo").collection("usermain").insertOne(newUser1);;
+        console.log(userfromdb);
 res.send({message:"successful login",token:token,user:user,id:id});
 //res.send(userstoretoken);
 }
