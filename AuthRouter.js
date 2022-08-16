@@ -41,11 +41,9 @@ const id=userfromdb._id;
 const newUser1={
   username:username,email:email,password:hashpassword,token:token,id:id
 }
-const userfromdb1=await client.db("Todo").collection("usermain").insertOne(newUser1);;
-console.log(userfromdb1);       
+     
 console.log(userfromdb);
 res.send({message:"successful login",token:token,user:user,id:id});
-res.send(userfromdb1);
 }
 else{
 res.status(401).send({message:"Invalid credenitials"});
