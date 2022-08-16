@@ -39,7 +39,7 @@ const token=jwt.sign({id:userfromdb._id},process.env.SECRET_KEY);
 const user=username;
 const id=userfromdb._id;
 const newUser1={
-  username:username,email:email,password:hashpassword,token:token,id:id
+  username:username,password:hashpassword,token:token,id:id
 }
 console.log(userfromdb);
 console.log(user);
