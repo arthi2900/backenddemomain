@@ -42,6 +42,7 @@ const newUser1={
   username:username,email:email,password:hashpassword,token:token,id:id
 }
 console.log(userfromdb);
+console.log(user);
 res.send({message:"successful login",token:token,user:user,id:id});
 }
 else{
